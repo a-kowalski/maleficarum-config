@@ -14,6 +14,7 @@ trait Dependant
      */
     protected $configStorage = null;
 
+    /* ------------------------------------ Dependant methods START ------------------------------------ */
     /**
      * Inject a new config object.
      *
@@ -21,8 +22,7 @@ trait Dependant
      *
      * @return $this
      */
-    public function setConfig(\Maleficarum\Config\AbstractConfig $config)
-    {
+    public function setConfig(\Maleficarum\Config\AbstractConfig $config) {
         $this->configStorage = $config;
 
         return $this;
@@ -33,8 +33,7 @@ trait Dependant
      *
      * @return \Maleficarum\Config\AbstractConfig|null
      */
-    public function getConfig()
-    {
+    public function getConfig() {
         return $this->configStorage;
     }
 
@@ -43,10 +42,10 @@ trait Dependant
      *
      * @return $this
      */
-    public function detachConfig()
-    {
+    public function detachConfig() {
         $this->configStorage = null;
 
         return $this;
     }
+    /* ------------------------------------ Dependant methods END -------------------------------------- */
 }

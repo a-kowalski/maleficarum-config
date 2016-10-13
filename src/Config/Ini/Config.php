@@ -9,12 +9,13 @@ namespace Maleficarum\Config\Ini;
 
 class Config extends \Maleficarum\Config\AbstractConfig
 {
+    /* ------------------------------------ AbstractConfig methods START ------------------------------- */
     /**
      * @see Maleficarum\Config\AbstractConfig::load()
+     * 
      * @throws \InvalidArgumentException
      */
-    public function load($id)
-    {
+    public function load($id) {
         if (!is_string($id)) {
             throw new \InvalidArgumentException('Incorrect config ID - string expected. \Maleficarum\Config\Ini\Config::load()');
         }
@@ -27,4 +28,5 @@ class Config extends \Maleficarum\Config\AbstractConfig
 
         return $this;
     }
+    /* ------------------------------------ AbstractConfig methods END --------------------------------- */
 }
