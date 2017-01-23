@@ -11,17 +11,18 @@ class Config extends \Maleficarum\Config\AbstractConfig
 {
     /* ------------------------------------ AbstractConfig methods START ------------------------------- */
     /**
-     * @see Maleficarum\Config\AbstractConfig::load()
-     * 
-     * @throws \InvalidArgumentException
+     * Loads the specified config from a storage.
+     *
+     * @see \Maleficarum\Config\AbstractConfig::load()
+     *
+     * @param string $id
+     *
+     * @return \Maleficarum\Config\AbstractConfig
+     * @throws \RuntimeException
      */
-    public function load($id) {
-        if (!is_string($id)) {
-            throw new \InvalidArgumentException('Incorrect config ID - string expected. \Maleficarum\Config\Ini\Config::load()');
-        }
-
+    public function load(string $id) : \Maleficarum\Config\AbstractConfig {
         if (!is_readable($id)) {
-            throw new \InvalidArgumentException('Incorrect config ID - not a readable file. \Maleficarum\Config\Ini\Config::load()');
+            throw new \RuntimeException(sprintf('Incorrect config ID - not a readable file. \%s::load()', static::class));
         }
 
         $this->data = parse_ini_file($id, true);

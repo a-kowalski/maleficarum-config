@@ -1,6 +1,10 @@
 # Change Log
 This is the Maleficarum Config component implementation. 
 
+## [2.0.0] - 2017-01-23
+### Changed
+- Add return and argument types declaration
+
 ## [1.1.0] - 2016-11-02
 ### Added
 - Add component tests

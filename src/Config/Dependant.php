@@ -10,7 +10,7 @@ trait Dependant
     /**
      * Internal storage for the config object.
      *
-     * @var \Maleficarum\Config\AbstractConfig
+     * @var \Maleficarum\Config\AbstractConfig|null
      */
     protected $configStorage = null;
 

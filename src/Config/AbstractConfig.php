@@ -1,6 +1,6 @@
 <?php
 /**
- * This class implements Functionality common to all configuration storage classes.
+ * This class implements functionality common to all configuration storage classes.
  *
  * @implements \ArrayAccess
  */
@@ -22,50 +22,69 @@ abstract class AbstractConfig implements \ArrayAccess
      *
      * @param string $id
      */
-    public function __construct($id) {
+    public function __construct(string $id) {
         $this->load($id);
     }
     /* ------------------------------------ Magic methods END ------------------------------------------ */
 
     /* ------------------------------------ ArrayAccess methods START ---------------------------------- */
     /**
-     * @see ArrayAccess::offsetExists()
+     * Checks if the given key exists in the array
+     *
+     * @see \ArrayAccess::offsetExists()
+     *
+     * @param mixed $offset
+     *
+     * @return bool
      */
-    public function offsetExists($offset) {
+    public function offsetExists($offset) : bool {
         return array_key_exists($offset, $this->data);
     }
 
     /**
-     * This method will always throw a RuntimeException. It's not allowed to set config data from the execution context.
+     * Gets the element with the given key
      *
-     * @see ArrayAccess::offsetUnset()
-     * 
-     * @throws \RuntimeException
-     */
-    public function offsetUnset($offset) {
-        throw new \RuntimeException(sprintf('Config data is read-only. \%s::offsetUnset()', get_class($this)));
-    }
-
-    /**
-     * @see ArrayAccess::offsetGet()
+     * @see \ArrayAccess::offsetGet()
+     *
+     * @param mixed $offset
+     *
+     * @return mixed
      */
     public function offsetGet($offset) {
-        if (array_key_exists($offset, $this->data)) {
-            return $this->data[$offset];
-        } else {
+        if (!$this->offsetExists($offset)) {
             return null;
         }
+
+        return $this->data[$offset];
     }
 
     /**
      * This method will always throw a RuntimeException. It's not allowed to set config data from the execution context.
      *
-     * @see ArrayAccess::offsetSet()
-     * 
+     * @see \ArrayAccess::offsetSet()
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     *
+     * @return void
      * @throws \RuntimeException
      */
     public function offsetSet($offset, $value) {
-        throw new \RuntimeException(sprintf('Config data is read-only. \%s::offsetSet()', get_class($this)));
+        throw new \RuntimeException(sprintf('Config data is read-only. \%s::offsetSet()', static::class));
+    }
+
+    /**
+     * This method will always throw a RuntimeException. It's not allowed to unset config data from the execution context.
+     *
+     * @see \ArrayAccess::offsetUnset()
+     *
+     * @param mixed $offset
+     *
+     * @return void
+     * @throws \RuntimeException
+     */
+    public function offsetUnset($offset) {
+        throw new \RuntimeException(sprintf('Config data is read-only. \%s::offsetUnset()', static::class));
     }
     /* ------------------------------------ ArrayAccess methods END ------------------------------------ */
 
@@ -75,8 +94,8 @@ abstract class AbstractConfig implements \ArrayAccess
      *
      * @param string $id
      *
-     * @return $this
+     * @return \Maleficarum\Config\AbstractConfig
      */
-    abstract public function load($id);
+    abstract public function load(string $id) : \Maleficarum\Config\AbstractConfig;
     /* ------------------------------------ Abstract methods END --------------------------------------- */
 }

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 /**
  * Tests for the \Maleficarum\Config\AbstractConfig class.
  */
@@ -8,15 +10,15 @@ namespace Test\Maleficarum\Config;
 class AbstractConfigTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * ATTRIBUTES
+     * Internal storage for config object mock
+     *
+     * @var \Maleficarum\Config\AbstractConfig|null
      */
-
     private $configMock = null;
 
     /**
-     * FIXTURES
+     * @inheritDoc
      */
-
     public function setUp() {
         // execute parent functionality
         parent::setUp();
@@ -34,12 +36,7 @@ class AbstractConfigTest extends \PHPUnit\Framework\TestCase
         $configData->setAccessible(false);
     }
 
-    /**
-     * TESTS
-     */
-
-    /**  METHOD: \Maleficarum\Config\AbstractConfig::__construct */
-
+    /* ------------------------------------ Method: __construct START ---------------------------------- */
     public function testConstructWithId() {
         $this->configMock
             ->expects($this->once())
@@ -50,28 +47,28 @@ class AbstractConfigTest extends \PHPUnit\Framework\TestCase
         $constructor = $reflection->getConstructor();
         $constructor->invoke($this->configMock, 'config_id');
     }
+    /* ------------------------------------ Method: __construct END ------------------------------------ */
 
-    /** METHOD: \Maleficarum\Config\AbstractConfig::offsetExists() */
-
-    public function testOffsetexistsSuccess() {
+    /* ------------------------------------ Method: offsetExists START --------------------------------- */
+    public function testOffsetExistsSuccess() {
         $this->assertTrue($this->configMock->offsetExists('testKey'));
     }
 
-    public function testOffsetexistsFailure() {
+    public function testOffsetExistsFailure() {
         $this->assertFalse($this->configMock->offsetExists(uniqid()));
     }
+    /* ------------------------------------ Method: offsetExists END ----------------------------------- */
 
-    /** METHOD: \Maleficarum\Config\AbstractConfig::offsetUnset() */
-
+    /* ------------------------------------ Method: offsetUnset START ---------------------------------- */
     /**
      * @expectedException \RuntimeException
      */
-    public function testOffsetunsetException() {
+    public function testOffsetUnsetException() {
         $this->configMock->offsetUnset(uniqid());
     }
+    /* ------------------------------------ Method: offsetUnset END ------------------------------------ */
 
-    /** METHOD: \Maleficarum\Config\AbstractConfig::offsetGet() */
-
+    /* ------------------------------------ Method: offsetGet START ------------------------------------ */
     public function testOffsetGetExisting() {
         $this->assertSame('testValue', $this->configMock->offsetGet('testKey'));
     }
@@ -79,13 +76,14 @@ class AbstractConfigTest extends \PHPUnit\Framework\TestCase
     public function testOffsetGetNonExisting() {
         $this->assertNull($this->configMock->offsetGet(uniqid()));
     }
+    /* ------------------------------------ Method: offsetGet END -------------------------------------- */
 
-    /** METHOD: \Maleficarum\Config\AbstractConfig::offsetSet() */
-
+    /* ------------------------------------ Method: offsetSet START ------------------------------------ */
     /**
      * @expectedException \RuntimeException
      */
-    public function testOffsetsetException() {
+    public function testOffsetSetException() {
         $this->configMock->offsetSet(uniqid(), uniqid());
     }
+    /* ------------------------------------ Method: offsetSet END -------------------------------------- */
 }
