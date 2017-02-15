@@ -5,18 +5,11 @@ declare(strict_types = 1);
  * Tests for the \Maleficarum\Config\Ini\Config class.
  */
 
-namespace Test\Maleficarum\Config\Ini;
+namespace Maleficarum\Config\Tests\Ini;
 
 class ConfigTest extends \PHPUnit\Framework\TestCase
 {
     /* ------------------------------------ Method: load START ----------------------------------------- */
-    /**
-     * @expectedException \TypeError
-     */
-    public function testConfigLoadIncorrectId() {
-        new \Maleficarum\Config\Ini\Config(null);
-    }
-
     /**
      * @expectedException \RuntimeException
      */

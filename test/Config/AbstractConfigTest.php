@@ -5,7 +5,7 @@ declare(strict_types = 1);
  * Tests for the \Maleficarum\Config\AbstractConfig class.
  */
 
-namespace Test\Maleficarum\Config;
+namespace Maleficarum\Config\Tests;
 
 class AbstractConfigTest extends \PHPUnit\Framework\TestCase
 {
