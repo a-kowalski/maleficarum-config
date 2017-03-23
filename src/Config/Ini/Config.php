@@ -1,24 +1,17 @@
 <?php
 /**
  * This class is a specific Config implementation based on the INI file format.
- *
- * @extends \Maleficarum\Config\AbstractConfig
  */
+declare (strict_types=1);
 
 namespace Maleficarum\Config\Ini;
 
-class Config extends \Maleficarum\Config\AbstractConfig
-{
-    /* ------------------------------------ AbstractConfig methods START ------------------------------- */
+class Config extends \Maleficarum\Config\AbstractConfig {
+    
+    /* ------------------------------------ Class Methods START ---------------------------------------- */
+    
     /**
-     * Loads the specified config from a storage.
-     *
      * @see \Maleficarum\Config\AbstractConfig::load()
-     *
-     * @param string $id
-     *
-     * @return \Maleficarum\Config\AbstractConfig
-     * @throws \RuntimeException
      */
     public function load(string $id) : \Maleficarum\Config\AbstractConfig {
         if (!is_readable($id)) {
@@ -26,8 +19,9 @@ class Config extends \Maleficarum\Config\AbstractConfig
         }
 
         $this->data = parse_ini_file($id, true);
-
         return $this;
     }
-    /* ------------------------------------ AbstractConfig methods END --------------------------------- */
+    
+    /* ------------------------------------ Class Methods END ------------------------------------------ */
+    
 }

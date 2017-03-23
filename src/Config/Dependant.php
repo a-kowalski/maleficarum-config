@@ -2,11 +2,14 @@
 /**
  * This trait provides functionality common to all classes dependant on the \Maleficarum\Config namespace
  */
+declare (strict_types=1);
 
 namespace Maleficarum\Config;
 
-trait Dependant
-{
+trait Dependant {
+    
+    /* ------------------------------------ Class Property START --------------------------------------- */
+    
     /**
      * Internal storage for the config object.
      *
@@ -14,13 +17,15 @@ trait Dependant
      */
     protected $configStorage = null;
 
-    /* ------------------------------------ Dependant methods START ------------------------------------ */
+    /* ------------------------------------ Class Property END ----------------------------------------- */
+    
+    /* ------------------------------------ Class Methods START ---------------------------------------- */
+    
     /**
      * Inject a new config object.
      *
      * @param \Maleficarum\Config\AbstractConfig $config
-     *
-     * @return $this
+     * @return \Maleficarum\Config\Dependant
      */
     public function setConfig(\Maleficarum\Config\AbstractConfig $config) {
         $this->configStorage = $config;
@@ -31,7 +36,7 @@ trait Dependant
     /**
      * Fetch the currently assigned config object.
      *
-     * @return \Maleficarum\Config\AbstractConfig|null
+     * @return \Maleficarum\Config\AbstractConfig
      */
     public function getConfig() {
         return $this->configStorage;
@@ -40,12 +45,14 @@ trait Dependant
     /**
      * Detach the currently assigned config object.
      *
-     * @return $this
+     * @return \Maleficarum\Config\Dependant
      */
     public function detachConfig() {
         $this->configStorage = null;
 
         return $this;
     }
-    /* ------------------------------------ Dependant methods END -------------------------------------- */
+    
+    /* ------------------------------------ Class Methods END ------------------------------------------ */
+    
 }

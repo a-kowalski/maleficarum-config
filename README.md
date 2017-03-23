@@ -1,6 +1,11 @@
 # Change Log
 This is the Maleficarum Config component implementation. 
 
+## [3.0.0] - 2017-03-23
+### Changed
+- Changed internal structure.
+- Added default package initializer.
+
 ## [2.0.1] - 2017-02-15
 ### Added
 - Add tests
