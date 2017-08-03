@@ -36,7 +36,7 @@ trait Dependant {
     /**
      * Fetch the currently assigned config object.
      *
-     * @return \Maleficarum\Config\AbstractConfig
+     * @return \Maleficarum\Config\AbstractConfig|null
      */
     public function getConfig(): ?\Maleficarum\Config\AbstractConfig {
         return $this->configStorage;
