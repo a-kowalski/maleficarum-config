@@ -7,9 +7,8 @@ declare (strict_types=1);
 namespace Maleficarum\Config;
 
 trait Dependant {
-    
     /* ------------------------------------ Class Property START --------------------------------------- */
-    
+
     /**
      * Internal storage for the config object.
      *
@@ -18,13 +17,14 @@ trait Dependant {
     protected $configStorage = null;
 
     /* ------------------------------------ Class Property END ----------------------------------------- */
-    
+
     /* ------------------------------------ Class Methods START ---------------------------------------- */
-    
+
     /**
      * Inject a new config object.
      *
      * @param \Maleficarum\Config\AbstractConfig $config
+     *
      * @return \Maleficarum\Config\Dependant
      */
     public function setConfig(\Maleficarum\Config\AbstractConfig $config) {
@@ -38,7 +38,7 @@ trait Dependant {
      *
      * @return \Maleficarum\Config\AbstractConfig
      */
-    public function getConfig() {
+    public function getConfig(): ?\Maleficarum\Config\AbstractConfig {
         return $this->configStorage;
     }
 
@@ -52,7 +52,6 @@ trait Dependant {
 
         return $this;
     }
-    
+
     /* ------------------------------------ Class Methods END ------------------------------------------ */
-    
 }

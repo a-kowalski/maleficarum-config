@@ -7,9 +7,8 @@ declare (strict_types=1);
 namespace Maleficarum\Config;
 
 abstract class AbstractConfig implements \ArrayAccess {
-    
     /* ------------------------------------ Class Property START --------------------------------------- */
-    
+
     /**
      * Internal storage for config data.
      *
@@ -18,7 +17,7 @@ abstract class AbstractConfig implements \ArrayAccess {
     protected $data = [];
 
     /* ------------------------------------ Class Property END ----------------------------------------- */
-    
+
     /* ------------------------------------ Magic methods START ---------------------------------------- */
     /**
      * Create and load a new config instance.
@@ -29,13 +28,13 @@ abstract class AbstractConfig implements \ArrayAccess {
         $this->load($id);
     }
     /* ------------------------------------ Magic methods END ------------------------------------------ */
-    
+
     /* ------------------------------------ ArrayAccess methods START ---------------------------------- */
-    
+
     /**
      * @see \ArrayAccess::offsetExists()
      */
-    public function offsetExists($offset) : bool {
+    public function offsetExists($offset): bool {
         return array_key_exists($offset, $this->data);
     }
 
@@ -63,19 +62,19 @@ abstract class AbstractConfig implements \ArrayAccess {
     public function offsetUnset($offset) {
         throw new \RuntimeException(sprintf('Config data is read-only. \%s::offsetUnset()', static::class));
     }
-    
+
     /* ------------------------------------ ArrayAccess methods END ------------------------------------ */
 
     /* ------------------------------------ Abstract methods START ------------------------------------- */
-    
+
     /**
      * Load the specified config from a storage.
      *
      * @param string $id
+     *
      * @return \Maleficarum\Config\AbstractConfig
      */
-    abstract public function load(string $id) : \Maleficarum\Config\AbstractConfig;
-    
+    abstract public function load(string $id): \Maleficarum\Config\AbstractConfig;
+
     /* ------------------------------------ Abstract methods END --------------------------------------- */
-    
 }
