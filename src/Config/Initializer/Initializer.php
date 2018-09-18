@@ -21,7 +21,7 @@ class Initializer {
         $builders = $opts['builders'] ?? [];
         is_array($builders) or $builders = [];
         if (!isset($builders['config']['skip'])) {
-            \Maleficarum\Ioc\Container::register('Maleficarum\Config\Ini\Config', function ($dep, $opts) {
+            \Maleficarum\Ioc\Container::registerBuilder('Maleficarum\Config\Ini\Config', function ($dep, $opts) {
                 $file = CONFIG_PATH . DIRECTORY_SEPARATOR . $dep['Maleficarum\Environment']->getCurrentEnvironment() . DIRECTORY_SEPARATOR . $opts['id'];
 
                 return (new \Maleficarum\Config\Ini\Config($file));
@@ -30,7 +30,7 @@ class Initializer {
 
         // load config object
         $config = \Maleficarum\Ioc\Container::get('Maleficarum\Config\Ini\Config', ['id' => 'config.ini']);
-        \Maleficarum\Ioc\Container::registerDependency('Maleficarum\Config', $config);
+        \Maleficarum\Ioc\Container::registerShare('Maleficarum\Config', $config);
 
         // check the disabled/enabled switch
         if (!isset($config['global']['enabled']) || (!$config['global']['enabled'])) {
