@@ -3,7 +3,7 @@ This is the Maleficarum Config component implementation.
 
 ## [5.0.0] - 2018-09-16
 ### Changed
-- Adjustment code to Maleficarum/IOC v 4.0
+- Adjustment code to Maleficarum/IOC v 3.0
 
 ## [4.0.0] - 2017-08-03
 ### Changed
