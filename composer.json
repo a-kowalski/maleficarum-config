@@ -13,11 +13,5 @@
         "psr-4": {
             "Maleficarum\\Config\\": "src/Config/"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@github.com:pharaun13/maleficarum-ioc.git"
-        }
-    ]
+    }
 }
