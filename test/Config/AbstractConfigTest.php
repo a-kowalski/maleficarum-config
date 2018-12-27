@@ -41,11 +41,11 @@ class AbstractConfigTest extends \PHPUnit\Framework\TestCase
         $this->configMock
             ->expects($this->once())
             ->method('load')
-            ->with($this->equalTo('config_id'));
+            ->with($this->equalTo(['config_id']));
 
         $reflection = new \ReflectionClass('Maleficarum\Config\AbstractConfig');
         $constructor = $reflection->getConstructor();
-        $constructor->invoke($this->configMock, 'config_id');
+        $constructor->invoke($this->configMock, ['config_id']);
     }
     /* ------------------------------------ Method: __construct END ------------------------------------ */
 

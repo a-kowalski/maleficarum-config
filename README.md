@@ -1,6 +1,11 @@
 # Change Log
 This is the Maleficarum Config component implementation. 
 
+## [5.1.0] - 2018-09-16
+### Changed
+- Creating configuration from many files
+- Improved unit tests 
+
 ## [5.0.0] - 2018-09-16
 ### Changed
 - Adjustment code to Maleficarum/IOC v 3.0
