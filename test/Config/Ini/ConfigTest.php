@@ -14,18 +14,18 @@ class ConfigTest extends \PHPUnit\Framework\TestCase
      * @expectedException \RuntimeException
      */
     public function testConfigLoadUnreadableId() {
-        new \Maleficarum\Config\Ini\Config(uniqid());
+        new \Maleficarum\Config\Ini\Config([uniqid()]);
     }
 
     public function testConfigLoadCorrectId() {
-        $config = new \Maleficarum\Config\Ini\Config('test/resources/__example-config.ini');
+        $config = new \Maleficarum\Config\Ini\Config(['test/resources/__example-config.ini']);
         $this->assertArrayHasKey('global', $config);
     }
     /* ------------------------------------ Method: load END ------------------------------------------- */
 
     /* ------------------------------------ Inheritance START ------------------------------------------ */
     public function testInheritance() {
-        $config = new \Maleficarum\Config\Ini\Config('test/resources/__example-config.ini');
+        $config = new \Maleficarum\Config\Ini\Config(['test/resources/__example-config.ini']);
         $this->assertInstanceOf('Maleficarum\Config\AbstractConfig', $config);
     }
     /* ------------------------------------ Inheritance END -------------------------------------------- */

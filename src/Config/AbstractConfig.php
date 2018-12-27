@@ -22,10 +22,10 @@ abstract class AbstractConfig implements \ArrayAccess {
     /**
      * Create and load a new config instance.
      *
-     * @param string $id
+     * @param array $ids
      */
-    public function __construct(string $id) {
-        $this->load($id);
+    public function __construct(array $ids) {
+        $this->load($ids);
     }
     /* ------------------------------------ Magic methods END ------------------------------------------ */
 
@@ -70,11 +70,11 @@ abstract class AbstractConfig implements \ArrayAccess {
     /**
      * Load the specified config from a storage.
      *
-     * @param string $id
+     * @param array $ids
      *
      * @return \Maleficarum\Config\AbstractConfig
      */
-    abstract public function load(string $id): \Maleficarum\Config\AbstractConfig;
+    abstract public function load(array $ids): \Maleficarum\Config\AbstractConfig;
 
     /* ------------------------------------ Abstract methods END --------------------------------------- */
 }

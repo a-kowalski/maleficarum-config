@@ -22,14 +22,15 @@ class Initializer {
         is_array($builders) or $builders = [];
         if (!isset($builders['config']['skip'])) {
             \Maleficarum\Ioc\Container::registerBuilder('Maleficarum\Config\Ini\Config', function ($dep, $opts) {
-                $file = CONFIG_PATH . DIRECTORY_SEPARATOR . $dep['Maleficarum\Environment']->getCurrentEnvironment() . DIRECTORY_SEPARATOR . $opts['id'];
-
-                return (new \Maleficarum\Config\Ini\Config($file));
+                return (new \Maleficarum\Config\Ini\Config($opts['ids']));
             });
         }
 
+        $environment = \Maleficarum\Ioc\Container::retrieveShare('Maleficarum\Environment');
+        $ids[] = CONFIG_PATH . DIRECTORY_SEPARATOR . $environment->getCurrentEnvironment() . DIRECTORY_SEPARATOR . 'config.ini';
+
         // load config object
-        $config = \Maleficarum\Ioc\Container::get('Maleficarum\Config\Ini\Config', ['id' => 'config.ini']);
+        $config = \Maleficarum\Ioc\Container::get('Maleficarum\Config\Ini\Config', ['ids' => $ids]);
         \Maleficarum\Ioc\Container::registerShare('Maleficarum\Config', $config);
 
         // check the disabled/enabled switch

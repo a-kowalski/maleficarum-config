@@ -12,12 +12,14 @@ class Config extends \Maleficarum\Config\AbstractConfig {
     /**
      * @see \Maleficarum\Config\AbstractConfig::load()
      */
-    public function load(string $id): \Maleficarum\Config\AbstractConfig {
-        if (!is_readable($id)) {
-            throw new \RuntimeException(sprintf('Incorrect config ID - not a readable file. \%s::load()', static::class));
+    public function load(array $ids): \Maleficarum\Config\AbstractConfig {
+        foreach($ids as $id) {
+            if (!is_readable($id)) {
+                throw new \RuntimeException(sprintf('Incorrect config ID - not a readable file: %s. \%s::load()', $id, static::class));
+            } else {
+                $this->data = \array_merge_recursive($this->data, \parse_ini_file($id, true));
+            }
         }
-
-        $this->data = parse_ini_file($id, true);
 
         return $this;
     }
